@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A simple, clean, and responsive HTML invoice template</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <style>
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0, 17, 255, 0.541);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: center;
+            border-bottom: 2px solid #2678f3;
+            
+        }
+        .invoice-box table td {
+            padding: 5px;
+            text-align: center;
+            
+        }
+        .invoice-box table tr td:nth-child(2) {
+            text-align: center;
+        }
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: rgb(4, 0, 255);
+        }
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+        .invoice-box table tr.heading td {
+            background: rgba(4, 0, 255, 0.493);
+            border-bottom: 1px solid rgb(17, 13, 13);
+            font-weight: bold;
+        }
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+        .invoice-box table tr.item td {
+            border-bottom: 2px solid #ffffff;
+        }
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid rgba(4, 0, 255, 0.493);
+            font-weight: bold;
+        }
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table class="striped" cellpadding="0" cellspacing="0">
+
+                <tr class="top">
+                        <td colspan="2">
+                            <table>
+                                <tr>
+                                    <td class="title">
+                                        <img src="https://media.informabtl.com/wp-content/uploads/2018/10/Logo-Corona-sin-R.jpg" style="width:130%; max-width:130px;">
+                                    </td>
+        
+                            </table>
+                        </td>
+                    </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{mycompany.name}}<br> {{mycompany.address}}
+                                <br> {{mycompany.city}}, {{mycompany.zipcode}}<br/> carval_jccv@hotmail.com
+                            </td>
+
+                            <td>
+                                {{customer.org}}<br> {{customer.name}}
+                                <br> {{customer.email}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="center">
+                                <br/> ID #: {{invoice_no}}<br> Fecha de creación: {{date_created}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Producto
+                </td>
+
+                <td>
+                    Monto
+                </td>
+            </tr>
+
+            {{#each products}}
+            <tr class="item {{#if @last}} last{{/if}}">
+                <td>
+                    {{name}}
+                </td>
+                <td>
+                    $ {{price}}
+                </td>
+            </tr>
+            {{/each}}
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                    <span style="font-weight: normal">IVA: $ {{exvat}}</span><br/> Total: $ {{total}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
